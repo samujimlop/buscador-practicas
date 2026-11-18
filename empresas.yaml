@@ -1,0 +1,68 @@
+# Lista de empresas que vigila el buscador.
+#
+# Campos:
+#   nombre       como queremos que salga en la web
+#   sector       para el filtro de la web
+#   plataforma   qué conector usar: greenhouse, workday, lever, successfactors...
+#                "pendiente" = aún no sabemos o aún no hay conector (se salta)
+#   web          página de empleo, para ir a mirar a mano
+#   verificado   true cuando alguien ha comprobado que la configuración funciona
+#   + los parámetros que necesite su conector (p. ej. `board` en Greenhouse)
+#
+# Cómo averiguar la plataforma de una empresa: abre su página de ofertas,
+# pulsa F12 > pestaña Red (Network) > filtra por Fetch/XHR y recarga. Mira a
+# qué dominio llaman: myworkdayjobs.com = Workday, greenhouse.io = Greenhouse,
+# lever.co = Lever, successfactors.* o "career" + "jobreq" = SuccessFactors...
+
+empresas:
+  # --- Greenhouse (ya hay conector). Los "board" están sin verificar. -------
+  - nombre: Cabify
+    sector: Tecnología
+    plataforma: greenhouse
+    board: cabify
+    verificado: false
+  - nombre: Glovo
+    sector: Tecnología
+    plataforma: greenhouse
+    board: glovo
+    verificado: false
+  - nombre: Typeform
+    sector: Tecnología
+    plataforma: greenhouse
+    board: typeform
+    verificado: false
+
+  # --- Pendientes: falta identificar plataforma y/o escribir el conector ----
+  - {nombre: Telefónica, sector: Telecomunicaciones, plataforma: pendiente, web: "https://www.telefonica.com/es/personas/trabaja-con-nosotros/"}
+  - {nombre: Prosegur, sector: Seguridad, plataforma: pendiente, web: "https://www.prosegur.es/trabaja-con-nosotros"}
+  - {nombre: Indra / Minsait, sector: Tecnología, plataforma: pendiente, web: "https://www.indracompany.com/es/talento"}
+  - {nombre: Amadeus, sector: Tecnología, plataforma: pendiente, web: "https://amadeus.com/en/careers"}
+  - {nombre: GMV, sector: Tecnología, plataforma: pendiente, web: "https://www.gmv.com/es-es/empleo"}
+  - {nombre: Banco Santander, sector: Banca, plataforma: pendiente, web: "https://www.santander.com/es/carreras"}
+  - {nombre: BBVA, sector: Banca, plataforma: pendiente, web: "https://careers.bbva.com/"}
+  - {nombre: CaixaBank, sector: Banca, plataforma: pendiente, web: "https://www.caixabank.com/es/empleo.html"}
+  - {nombre: Banco Sabadell, sector: Banca, plataforma: pendiente}
+  - {nombre: Bankinter, sector: Banca, plataforma: pendiente}
+  - {nombre: Mapfre, sector: Seguros, plataforma: pendiente}
+  - {nombre: Iberdrola, sector: Energía, plataforma: pendiente, web: "https://www.iberdrola.com/talento"}
+  - {nombre: Repsol, sector: Energía, plataforma: pendiente, web: "https://www.repsol.com/es/empleo/"}
+  - {nombre: Endesa, sector: Energía, plataforma: pendiente, web: "https://jobs.enel.com/es_ES/careers/JobOpeningsSpain", notas: "Verificado: buscar 'Beca' (programa SWING). Portal compartido con Enel."}
+  - {nombre: Naturgy, sector: Energía, plataforma: pendiente}
+  - {nombre: Moeve, sector: Energía, plataforma: pendiente}
+  - {nombre: Inditex, sector: Retail, plataforma: pendiente, web: "https://careers.inditex.com/"}
+  - {nombre: Mercadona, sector: Retail, plataforma: pendiente}
+  - {nombre: El Corte Inglés, sector: Retail, plataforma: pendiente}
+  - {nombre: Ferrovial, sector: Infraestructuras, plataforma: pendiente}
+  - {nombre: Acciona, sector: Infraestructuras, plataforma: pendiente}
+  - {nombre: Airbus, sector: Aeroespacial, plataforma: pendiente}
+  - {nombre: SEAT / CUPRA, sector: Automoción, plataforma: pendiente}
+  - {nombre: Accenture, sector: Consultoría, plataforma: pendiente, web: "https://www.accenture.com/es-es/careers"}
+  - {nombre: NTT DATA, sector: Consultoría, plataforma: pendiente}
+  - {nombre: Capgemini, sector: Consultoría, plataforma: pendiente}
+  - {nombre: Deloitte, sector: Consultoría, plataforma: pendiente}
+  - {nombre: PwC, sector: Consultoría, plataforma: pendiente}
+  - {nombre: EY, sector: Consultoría, plataforma: pendiente}
+  - {nombre: KPMG, sector: Consultoría, plataforma: pendiente}
+  - {nombre: Google, sector: Tecnología, plataforma: pendiente, web: "https://careers.google.com/"}
+  - {nombre: Microsoft, sector: Tecnología, plataforma: pendiente, web: "https://jobs.careers.microsoft.com/"}
+  - {nombre: Amazon / AWS, sector: Tecnología, plataforma: pendiente, web: "https://www.amazon.jobs/"}
