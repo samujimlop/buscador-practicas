@@ -18,6 +18,7 @@ from pathlib import Path
 
 import yaml
 
+from . import alertas, telegram
 from .conectores import CONECTORES
 from .filtros import nos_interesa
 
@@ -85,14 +86,33 @@ def ejecutar(empresas: list[dict], anterior: dict, hoy: str) -> dict:
 def main() -> int:
     logging.basicConfig(level=logging.INFO, format="%(message)s")
     hoy = datetime.now(timezone.utc).date().isoformat()
-    resultado = ejecutar(cargar_empresas(), cargar_anterior(), hoy)
+    anterior = cargar_anterior()
+    resultado = ejecutar(cargar_empresas(), anterior, hoy)
 
     FICHERO_SALIDA.parent.mkdir(exist_ok=True)
     with open(FICHERO_SALIDA, "w", encoding="utf-8") as f:
         json.dump(resultado, f, ensure_ascii=False, indent=1)
 
     log.info("Guardadas %d ofertas en %s", len(resultado["ofertas"]), FICHERO_SALIDA)
+    avisar_nuevas(anterior, resultado)
     return 0
+
+
+def ofertas_nuevas(anterior: dict, resultado: dict) -> list[dict]:
+    """Las que no estaban en la ejecución anterior."""
+    ids_antes = {o["id"] for o in anterior.get("ofertas", [])}
+    return [o for o in resultado["ofertas"] if o["id"] not in ids_antes]
+
+
+def avisar_nuevas(anterior: dict, resultado: dict) -> None:
+    nuevas = ofertas_nuevas(anterior, resultado)
+    if anterior.get("actualizado") is None:
+        # Primera ejecución: todo es "nuevo". Mejor un resumen que 50 mensajes.
+        if nuevas and telegram.configurado():
+            telegram.enviar(f"👋 Primera búsqueda hecha: {len(nuevas)} ofertas de prácticas IT. "
+                            "Míralas en la web; a partir de mañana te aviso solo de las nuevas.")
+        return
+    alertas.avisar(nuevas)
 
 
 if __name__ == "__main__":
