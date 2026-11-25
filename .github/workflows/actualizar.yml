@@ -5,6 +5,8 @@ on:
   schedule:
     - cron: "30 6 * * *"   # 06:30 UTC = 07:30 en Madrid (08:30 en verano)
   workflow_dispatch:        # botón "Run workflow" para lanzarlo a mano
+  repository_dispatch:
+    types: [buscar]         # /buscar en Telegram (lo lanza webhook/worker.js)
   push:
     branches: [main]
   pull_request:             # en los PR solo se pasan los tests
