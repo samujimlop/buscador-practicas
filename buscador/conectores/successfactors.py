@@ -110,7 +110,8 @@ def convertir(crudo: dict, empresa: dict) -> Oferta:
         titulo=titulo,
         url=crudo["link"],
         ubicacion_original=lugar,
-        ciudad=normalizar_ciudad(lugar),
+        # A veces el lugar solo dice "ES" y la ciudad va en el título ("... LOGROÑO")
+        ciudad=normalizar_ciudad(lugar) or normalizar_ciudad(titulo),
         # SuccessFactors pone el país como código de 2 letras: "Madrid, ES, 28046"
         pais="Spain" if re.search(r"(^|,\s*)ES(,|$)", lugar) else "",
         modalidad=detectar_modalidad(f"{titulo} {descripcion[:400]}"),
