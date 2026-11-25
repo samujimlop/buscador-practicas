@@ -2,6 +2,8 @@
 # Actions → "Probar conectores" → Run workflow (puedes poner empresas concretas).
 name: Probar conectores
 on:
+  push:
+    branches: [conectores-grandes]   # TEMPORAL
   workflow_dispatch:
     inputs:
       empresas:
