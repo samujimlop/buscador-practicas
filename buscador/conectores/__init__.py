@@ -6,11 +6,11 @@ Para añadir una plataforma nueva:
   3. en empresas.yaml pon `plataforma: <plataforma>` en las empresas que la usen
 """
 
-from . import greenhouse
+from . import greenhouse, successfactors, workday
 
 CONECTORES = {
     "greenhouse": greenhouse.obtener_ofertas,
-    # "workday": workday.obtener_ofertas,          <- issue para Samuel
-    # "lever": lever.obtener_ofertas,              <- issue para Samuel
-    # "successfactors": successfactors.obtener_ofertas,
+    "successfactors": successfactors.obtener_ofertas,
+    "workday": workday.obtener_ofertas,
+    # "lever": lever.obtener_ofertas,              <- issue #3 para Samuel
 }
