@@ -1,0 +1,50 @@
+{
+  "jobs": [
+    {
+      "id": 1001,
+      "title": "Software Engineer Intern",
+      "absolute_url": "https://job-boards.greenhouse.io/ejemplo/jobs/1001",
+      "location": {"name": "Madrid, Community of Madrid, Spain"},
+      "departments": [{"name": "Engineering"}],
+      "updated_at": "2026-11-10T09:00:00-05:00",
+      "first_published": "2026-11-02T10:00:00-05:00",
+      "content": "&lt;p&gt;Buscamos estudiantes de &lt;strong&gt;Ingeniería Informática&lt;/strong&gt;.&lt;/p&gt;"
+    },
+    {
+      "id": 1002,
+      "title": "Senior Backend Engineer",
+      "absolute_url": "https://job-boards.greenhouse.io/ejemplo/jobs/1002",
+      "location": {"name": "Barcelona, Spain"},
+      "departments": [{"name": "Engineering"}],
+      "updated_at": "2026-11-11T09:00:00-05:00",
+      "content": "&lt;p&gt;5+ years of experience.&lt;/p&gt;"
+    },
+    {
+      "id": 1003,
+      "title": "Marketing Intern",
+      "absolute_url": "https://job-boards.greenhouse.io/ejemplo/jobs/1003",
+      "location": {"name": "Barcelona, Spain"},
+      "departments": [{"name": "Marketing"}],
+      "updated_at": "2026-11-12T09:00:00-05:00",
+      "content": "&lt;p&gt;Help our brand team.&lt;/p&gt;"
+    },
+    {
+      "id": 1004,
+      "title": "Data Science Internship",
+      "absolute_url": "https://job-boards.greenhouse.io/ejemplo/jobs/1004",
+      "location": {"name": "Lisbon, Portugal"},
+      "departments": [{"name": "Data"}],
+      "updated_at": "2026-11-12T09:00:00-05:00",
+      "content": ""
+    },
+    {
+      "id": 1005,
+      "title": "Becario/a Desarrollo Web (Híbrido)",
+      "absolute_url": "https://job-boards.greenhouse.io/ejemplo/jobs/1005",
+      "location": {"name": "Valencia"},
+      "departments": [],
+      "updated_at": "2026-11-15T09:00:00+01:00",
+      "content": ""
+    }
+  ]
+}

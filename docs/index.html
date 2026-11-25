@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buscador de prácticas</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1b1f24; --muted: #5f6b7a;
+    --border: #dde2e8; --accent: #1f6feb; --accent-soft: #e6efff; --new: #1a7f37; --new-soft: #e3f6e8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1216; --card: #171b21; --text: #e6e9ed; --muted: #95a0ad;
+      --border: #2a3039; --accent: #5b9dff; --accent-soft: #1b2a44; --new: #4ccb6e; --new-soft: #15301f;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 24px 16px 64px; }
+  header h1 { margin: 0 0 4px; font-size: 26px; }
+  header p { margin: 0; color: var(--muted); }
+  .filtros { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8px; margin: 20px 0 8px; }
+  .filtros input, .filtros select {
+    width: 100%; padding: 9px 10px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--card); color: var(--text); font: inherit; }
+  .opciones { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; color: var(--muted); margin-bottom: 16px; }
+  .opciones label { display: flex; gap: 6px; align-items: center; cursor: pointer; }
+  .lista { display: grid; gap: 10px; }
+  .oferta { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+  .oferta a.titulo { color: var(--text); font-weight: 600; font-size: 16px; text-decoration: none; }
+  .oferta a.titulo:hover { color: var(--accent); text-decoration: underline; }
+  .meta { color: var(--muted); font-size: 14px; margin-top: 2px; }
+  .chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+  .chip { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+  .chip.nueva { background: var(--new-soft); color: var(--new); font-weight: 600; }
+  .vacio { text-align: center; color: var(--muted); padding: 40px 16px; border: 1px dashed var(--border); border-radius: 10px; }
+  details { margin-top: 32px; color: var(--muted); }
+  details table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 14px; }
+  details td, details th { text-align: left; padding: 4px 6px; border-bottom: 1px solid var(--border); }
+  @media (max-width: 700px) { .filtros { grid-template-columns: 1fr 1fr; } .filtros .buscar { grid-column: 1 / -1; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Buscador de prácticas</h1>
+    <p id="resumen">Cargando ofertas…</p>
+  </header>
+
+  <div class="filtros">
+    <input class="buscar" id="texto" type="search" placeholder="Buscar: python, datos, ciberseguridad…">
+    <select id="ciudad"><option value="">Todas las ciudades</option></select>
+    <select id="empresa"><option value="">Todas las empresas</option></select>
+    <select id="sector"><option value="">Todos los sectores</option></select>
+  </div>
+  <div class="opciones">
+    <label><input type="checkbox" id="nuevas"> Solo nuevas (últimos 7 días)</label>
+    <span id="contador"></span>
+  </div>
+
+  <div class="lista" id="lista"></div>
+
+  <details>
+    <summary>Estado de cada empresa en la última actualización</summary>
+    <table id="estado"></table>
+  </details>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+let ofertas = [];
+
+function escapar(texto) {
+  const div = document.createElement("div");
+  div.textContent = texto ?? "";
+  return div.innerHTML;
+}
+
+function diasDesde(fechaIso) {
+  if (!fechaIso) return Infinity;
+  return (Date.now() - new Date(fechaIso + "T00:00:00Z")) / 86400000;
+}
+
+function rellenarSelect(select, valores) {
+  [...new Set(valores.filter(Boolean))].sort((a, b) => a.localeCompare(b, "es"))
+    .forEach((v) => select.add(new Option(v, v)));
+}
+
+function pintar() {
+  const texto = $("texto").value.trim().toLowerCase();
+  const ciudad = $("ciudad").value, empresa = $("empresa").value, sector = $("sector").value;
+  const soloNuevas = $("nuevas").checked;
+
+  const visibles = ofertas.filter((o) =>
+    (!ciudad || o.ciudad === ciudad) &&
+    (!empresa || o.empresa === empresa) &&
+    (!sector || o.sector === sector) &&
+    (!soloNuevas || diasDesde(o.primera_vez_vista) <= 7) &&
+    (!texto || `${o.titulo} ${o.empresa} ${o.departamento} ${o.ubicacion_original}`.toLowerCase().includes(texto))
+  );
+
+  $("contador").textContent = `${visibles.length} de ${ofertas.length} ofertas`;
+  $("lista").innerHTML = visibles.length ? visibles.map((o) => {
+    const nueva = diasDesde(o.primera_vez_vista) <= 7;
+    const lugar = o.ciudad || o.ubicacion_original || "Ubicación sin indicar";
+    return `<article class="oferta">
+      <a class="titulo" href="${escapar(o.url)}" target="_blank" rel="noopener">${escapar(o.titulo)}</a>
+      <div class="meta">${escapar(o.empresa)} · ${escapar(lugar)}${o.fecha_publicacion ? " · publicada " + escapar(o.fecha_publicacion) : ""}</div>
+      <div class="chips">
+        ${nueva ? '<span class="chip nueva">Nueva</span>' : ""}
+        ${o.sector ? `<span class="chip">${escapar(o.sector)}</span>` : ""}
+        ${o.modalidad ? `<span class="chip">${escapar(o.modalidad)}</span>` : ""}
+        ${o.departamento ? `<span class="chip">${escapar(o.departamento)}</span>` : ""}
+      </div>
+    </article>`;
+  }).join("") : '<div class="vacio">No hay ofertas con estos filtros.</div>';
+}
+
+async function iniciar() {
+  try {
+    const datos = await (await fetch("ofertas.json", { cache: "no-store" })).json();
+    ofertas = datos.ofertas || [];
+    const fecha = datos.actualizado ? new Date(datos.actualizado).toLocaleString("es-ES") : "nunca";
+    const conConector = (datos.estado || []).filter((e) => e.estado !== "sin conector").length;
+    $("resumen").textContent =
+      `Prácticas de informática en portales de empresas de toda España. Empresas revisadas: ${conConector}. Actualizado: ${fecha}.`;
+    rellenarSelect($("ciudad"), ofertas.map((o) => o.ciudad));
+    rellenarSelect($("empresa"), ofertas.map((o) => o.empresa));
+    rellenarSelect($("sector"), ofertas.map((o) => o.sector));
+    $("estado").innerHTML = "<tr><th>Empresa</th><th>Estado</th><th>Prácticas IT</th></tr>" +
+      (datos.estado || []).map((e) =>
+        `<tr><td>${escapar(e.empresa)}</td><td>${escapar(e.estado)}</td><td>${e.practicas_it ?? ""}</td></tr>`).join("");
+  } catch (error) {
+    $("resumen").textContent = "No se han podido cargar las ofertas.";
+  }
+  pintar();
+}
+
+["texto", "ciudad", "empresa", "sector", "nuevas"].forEach((id) => $(id).addEventListener("input", pintar));
+iniciar();
+</script>
+</body>
+</html>

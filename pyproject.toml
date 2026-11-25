@@ -1,0 +1,4 @@
+[tool.pytest.ini_options]
+# Para que los tests puedan hacer "import buscador" desde la raíz del repo
+pythonpath = ["."]
+testpaths = ["tests"]
