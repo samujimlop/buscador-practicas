@@ -82,3 +82,43 @@ def actualizaciones(desde: int) -> list[dict]:
     """
     return llamar("getUpdates", offset=desde, timeout=0,
                   allowed_updates=["callback_query", "message"])
+
+
+def enviar_documento(documento, texto: str = "") -> dict:
+    """Manda un fichero (sendDocument).
+
+    `documento` puede ser:
+      - una ruta (Path) a un fichero de este ordenador: lo subimos.
+      - un texto con el file_id de un fichero que ya está en Telegram
+        (por ejemplo, tu CV, que le mandaste al bot una vez): no hay que subirlo.
+
+    Ojo: para subir ficheros Telegram no acepta JSON, sino "multipart/form-data"
+    (lo mismo que hace un formulario web con un <input type="file">).
+    """
+    url = URL_API.format(token=os.environ["TELEGRAM_TOKEN"], metodo="sendDocument")
+    datos = {"chat_id": chat_id(), "caption": texto, "parse_mode": "HTML"}
+    if isinstance(documento, str):
+        respuesta = requests.post(url, data={**datos, "document": documento}, timeout=TIEMPO_MAXIMO)
+    else:
+        with open(documento, "rb") as f:
+            respuesta = requests.post(url, data=datos, files={"document": (documento.name, f, "application/pdf")},
+                                      timeout=TIEMPO_MAXIMO)
+    resultado = respuesta.json()
+    if not resultado.get("ok"):
+        raise RuntimeError(f"Telegram sendDocument: {resultado.get('description', respuesta.status_code)}")
+    return resultado["result"]
+
+
+def descargar_fichero(file_id: str) -> bytes:
+    """Descarga un fichero que está en Telegram (p. ej. tu CV) a partir de su file_id.
+
+    Dos pasos: getFile nos dice en qué ruta está, y luego lo bajamos de
+    https://api.telegram.org/file/bot<TOKEN>/<ruta>. Esa URL lleva el token:
+    nunca la imprimas.
+    """
+    ruta = llamar("getFile", file_id=file_id)["file_path"]
+    url = f"https://api.telegram.org/file/bot{os.environ['TELEGRAM_TOKEN']}/{ruta}"
+    respuesta = requests.get(url, timeout=TIEMPO_MAXIMO)
+    if respuesta.status_code != 200:
+        raise RuntimeError(f"Telegram: no se pudo descargar el fichero ({respuesta.status_code})")
+    return respuesta.content

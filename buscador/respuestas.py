@@ -7,6 +7,7 @@ botones has pulsado desde la última vez y apunta tu decisión.
 Estado que guardamos en el repo (para la siguiente ejecución):
     data/telegram_offset.json   por dónde íbamos leyendo
     data/decisiones.json        {id_oferta: {"decision": "si"/"no", "fecha": ...}}
+    data/cv_telegram.json       el file_id de tu CV si se lo mandaste al bot
 """
 
 from __future__ import annotations
@@ -49,7 +50,8 @@ def procesar(actualizaciones: list[dict], ofertas: dict[str, dict], decisiones: 
         siguiente = max(siguiente, upd["update_id"] + 1)
         clic = upd.get("callback_query")
         if not clic:
-            continue  # mensajes de texto: de momento los ignoramos
+            recibir_mensaje(upd.get("message") or {}, mi_chat)
+            continue
 
         mensaje = clic.get("message") or {}
         # Seguridad: solo hacemos caso a TU chat. Cualquiera puede escribir a un bot.
@@ -78,6 +80,16 @@ def procesar(actualizaciones: list[dict], ofertas: dict[str, dict], decisiones: 
             telegram.editar(mensaje, f"✅ Preparando candidatura: {resumen}")
             candidatura.preparar(oferta)
     return siguiente
+
+
+def recibir_mensaje(mensaje: dict, mi_chat: str) -> None:
+    """Si nos mandas un PDF, lo guardamos como tu CV. El resto de mensajes se ignoran."""
+    if str(mensaje.get("chat", {}).get("id")) != str(mi_chat):
+        return
+    documento = mensaje.get("document") or {}
+    if documento.get("mime_type") == "application/pdf":
+        candidatura.guardar_cv(documento)
+        telegram.enviar("📎 CV guardado. Lo adjuntaré a cada carta a partir de ahora.")
 
 
 def main() -> int:

@@ -35,5 +35,6 @@ aún no haya conector, saberlo nos dice cuál conviene escribir antes.
 - Alertas por Telegram cuando aparezca una oferta nueva.
 - Afinar `filtros.py` con casos reales que se cuelen o se escapen (siempre con test).
 
-## 6. Carta de presentación con Claude (issue en GitHub)
-## 7. Carta y CV en PDF y envío por Telegram (issue en GitHub)
+## 6. Carta de presentación con Claude ✅ (issue #7, hecha)
+## 7. Carta y CV en PDF y envío por Telegram ✅ (issue #8, hecha)
+- Ideas para seguir: afinar el prompt de `buscador/carta.py` con tus cartas reales; botón "📧 Enviar por email" con confirmación.
