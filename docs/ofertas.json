@@ -1,1 +1,188 @@
-{"actualizado": null, "ofertas": [], "estado": []}
+{
+ "actualizado": "2026-11-25T12:27+00:00",
+ "ofertas": [],
+ "estado": [
+  {
+   "empresa": "Cabify",
+   "estado": "ok",
+   "total": 45,
+   "practicas_it": 0
+  },
+  {
+   "empresa": "Glovo",
+   "estado": "error",
+   "detalle": "404 Client Error: Not Found for url: https://boards-api.greenhouse.io/v1/boards/glovo/jobs?content=true"
+  },
+  {
+   "empresa": "Typeform",
+   "estado": "ok",
+   "total": 6,
+   "practicas_it": 0
+  },
+  {
+   "empresa": "Telefónica",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "Prosegur",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "Indra / Minsait",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "Amadeus",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "GMV",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "Banco Santander",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "BBVA",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "CaixaBank",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "Banco Sabadell",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "Bankinter",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "Mapfre",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "Iberdrola",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "Repsol",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "Endesa",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "Naturgy",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "Moeve",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "Inditex",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "Mercadona",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "El Corte Inglés",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "Ferrovial",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "Acciona",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "Airbus",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "SEAT / CUPRA",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "Accenture",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "NTT DATA",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "Capgemini",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "Deloitte",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "PwC",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "EY",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "KPMG",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "Google",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "Microsoft",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  },
+  {
+   "empresa": "Amazon / AWS",
+   "estado": "sin conector",
+   "plataforma": "pendiente"
+  }
+ ]
+}
