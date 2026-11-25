@@ -70,8 +70,16 @@ def editar(mensaje: dict, texto: str) -> None:
 
 
 def contestar_boton(callback_id: str, texto: str = "") -> None:
-    """Telegram deja el botón "cargando" hasta que contestas al callback."""
-    llamar("answerCallbackQuery", callback_query_id=callback_id, text=texto)
+    """Telegram deja el botón "cargando" hasta que contestas al callback.
+
+    Solo se puede contestar durante un rato (y una vez): si el worker ya lo
+    contestó, o si leemos el clic media hora después, Telegram da error.
+    No pasa nada: seguimos con lo importante.
+    """
+    try:
+        llamar("answerCallbackQuery", callback_query_id=callback_id, text=texto)
+    except RuntimeError:
+        pass
 
 
 def actualizaciones(desde: int) -> list[dict]:

@@ -77,6 +77,45 @@ El repo es público: el CV y las cartas **nunca** se guardan en el repo ni se
 imprimen en los logs. En tu ordenador puedes probar con `perfil/cv.md`
 (la carpeta `perfil/` está en `.gitignore`).
 
+### Respuestas al momento (webhook con Cloudflare, gratis)
+
+Sin esto, los botones se leen cada 30 minutos (y GitHub a veces retrasa o se
+salta esas ejecuciones programadas). Con un webhook, Telegram avisa en cuanto
+pulsas algo y la carta te llega en 1 o 2 minutos. Además puedes escribir
+`/buscar` para lanzar la búsqueda cuando quieras.
+
+```
+Telegram ──► worker de Cloudflare ──► GitHub Actions (repository_dispatch) ──► Telegram
+```
+
+El "worker" es un programa de 80 líneas (`webhook/worker.js`) que vive en
+Cloudflare: contesta al momento y le pide a GitHub que lance el workflow.
+
+1. **Worker:** crea una cuenta gratis en Cloudflare → *Workers & Pages* →
+   *Create* → *Worker* ("Hello World") → nombre `buscador-practicas` → *Deploy*.
+   Luego *Edit code*, borra lo que hay, pega `webhook/worker.js` y *Deploy*.
+   Apunta su dirección: `https://buscador-practicas.<algo>.workers.dev`.
+2. **Token de GitHub** (para que el worker pueda lanzar workflows): GitHub →
+   Settings → Developer settings → *Fine-grained tokens* → *Generate new token*.
+   Repository access: *Only select repositories* → este repo. Permissions:
+   *Contents: Read and write*. Nada más.
+3. **Variables del worker** (*Settings → Variables and Secrets*):
+
+   | Nombre | Tipo | Valor |
+   |---|---|---|
+   | `TELEGRAM_TOKEN` | Secret | el token del bot |
+   | `TELEGRAM_CHAT_ID` | Text | tu chat id |
+   | `TELEGRAM_SECRET` | Secret | una contraseña que inventes (solo letras, números, `_` y `-`) |
+   | `GITHUB_TOKEN` | Secret | el token del paso 2 |
+   | `REPO` | Text | `samujimlop/buscador-practicas` |
+
+4. **Conectar Telegram con el worker:** abre en el navegador (cambiando las tres partes):
+   `https://api.telegram.org/bot<TOKEN>/setWebhook?url=<DIRECCIÓN_DEL_WORKER>&secret_token=<TELEGRAM_SECRET>`.
+   Debe responder `"Webhook was set"`.
+5. **Pruébalo:** escribe `/buscar` al bot.
+
+Para volver al modo de cada 30 minutos: `https://api.telegram.org/bot<TOKEN>/deleteWebhook`.
+
 **Seguridad:** cualquiera puede escribir a un bot si sabe su nombre, por eso
 `respuestas.py` solo hace caso a los clics que vienen de tu `TELEGRAM_CHAT_ID`.
 

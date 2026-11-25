@@ -4,6 +4,8 @@ Truco: sustituimos `telegram.llamar` por una función falsa que apunta qué
 le han pedido. Así comprobamos QUÉ mandaríamos, sin red ni token.
 """
 
+import json
+
 import pytest
 
 from buscador import alertas, candidatura, main, respuestas, telegram
@@ -95,3 +97,54 @@ def test_despues_avisa_solo_de_las_nuevas(bot):
     main.avisar_nuevas(anterior, {"ofertas": [OFERTA, nueva]})
     assert len(bot) == 1
     assert "si:nueva1" in str(bot[0][1]["reply_markup"])
+
+
+# --- Webhook (respuestas al momento) ---------------------------------------
+
+def test_mensaje_del_webhook_desde_el_evento(monkeypatch, tmp_path):
+    evento = tmp_path / "evento.json"
+    evento.write_text('{"client_payload": {"update": {"update_id": 3}}}', encoding="utf-8")
+    monkeypatch.setenv("GITHUB_EVENT_NAME", "repository_dispatch")
+    monkeypatch.setenv("GITHUB_EVENT_PATH", str(evento))
+    assert respuestas.update_del_webhook() == {"update_id": 3}
+    monkeypatch.setenv("GITHUB_EVENT_NAME", "schedule")
+    assert respuestas.update_del_webhook() is None
+
+
+def test_main_con_webhook_procesa_el_clic_y_guarda_un_fichero(bot, monkeypatch, tmp_path):
+    monkeypatch.setattr(respuestas, "CARPETA_DECISIONES", tmp_path / "decisiones")
+    monkeypatch.setattr(respuestas, "FICHERO_OFERTAS", tmp_path / "ofertas.json")
+    (tmp_path / "ofertas.json").write_text(json.dumps({"ofertas": [OFERTA]}), encoding="utf-8")
+    monkeypatch.setattr(respuestas, "update_del_webhook", lambda: _clic(1, "no:abc123def456"))
+    respuestas.main()
+    guardada = json.loads((tmp_path / "decisiones" / "abc123def456.json").read_text(encoding="utf-8"))
+    assert guardada["decision"] == "no"
+    assert "getUpdates" not in [m for m, _ in bot]  # con webhook no se pregunta a Telegram
+
+
+def test_polling_con_webhook_activo_no_falla(monkeypatch, tmp_path):
+    monkeypatch.setenv("TELEGRAM_TOKEN", "t")
+    monkeypatch.setenv("TELEGRAM_CHAT_ID", "42")
+    monkeypatch.setattr(respuestas, "CARPETA_DECISIONES", tmp_path)
+    monkeypatch.setattr(respuestas, "update_del_webhook", lambda: None)
+
+    def conflicto(desde):
+        raise RuntimeError("Telegram getUpdates: Conflict: can't use getUpdates method while webhook is active")
+    monkeypatch.setattr(telegram, "actualizaciones", conflicto)
+    assert respuestas.main() == 0
+
+
+def test_contestar_tarde_un_boton_no_rompe_nada(monkeypatch):
+    def caducado(metodo, **p):
+        raise RuntimeError("Telegram answerCallbackQuery: query is too old")
+    monkeypatch.setattr(telegram, "llamar", caducado)
+    telegram.contestar_boton("cb1", "Apuntado")  # no lanza excepción
+
+
+def test_resumen_de_busqueda(bot):
+    anterior = {"ofertas": [OFERTA]}
+    resultado = {"ofertas": [OFERTA, dict(OFERTA, id="nueva")],
+                 "estado": [{"estado": "ok"}, {"estado": "error"}]}
+    main.resumen_de_busqueda(anterior, resultado)
+    texto = bot[-1][1]["text"]
+    assert "2 prácticas IT en total, 1 nuevas" in texto and "1 empresas han fallado" in texto

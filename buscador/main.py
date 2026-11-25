@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -102,6 +103,8 @@ def main() -> int:
 
     log.info("Guardadas %d ofertas en %s", len(resultado["ofertas"]), FICHERO_SALIDA)
     avisar_nuevas(anterior, resultado)
+    if os.environ.get("GITHUB_EVENT_NAME") == "repository_dispatch":
+        resumen_de_busqueda(anterior, resultado)  # la pediste con /buscar
     return 0
 
 
@@ -120,6 +123,19 @@ def avisar_nuevas(anterior: dict, resultado: dict) -> None:
                             "Míralas en la web; a partir de mañana te aviso solo de las nuevas.")
         return
     alertas.avisar(nuevas)
+
+
+def resumen_de_busqueda(anterior: dict, resultado: dict) -> None:
+    """Cuando lanzas la búsqueda a mano desde Telegram, te contestamos siempre."""
+    if not telegram.configurado():
+        return
+    nuevas = len(ofertas_nuevas(anterior, resultado))
+    fallos = sum(1 for e in resultado["estado"] if e["estado"] == "error")
+    texto = (f"🔎 Búsqueda terminada: {len(resultado['ofertas'])} prácticas IT en total, "
+             f"{nuevas} nuevas" + (f" ({nuevas} avisos arriba)." if nuevas else "."))
+    if fallos:
+        texto += f"\n⚠️ {fallos} empresas han fallado hoy (lo verás en la web)."
+    telegram.enviar(texto)
 
 
 if __name__ == "__main__":
