@@ -17,7 +17,7 @@ concurrency:
 jobs:
   respuestas:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10   # escribir cartas con Claude tarda un poco
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -28,7 +28,10 @@ jobs:
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}   # para la carta (issue pendiente)
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}   # para escribir la carta
+          CV_TEXTO: ${{ secrets.CV_TEXTO }}                     # tu CV en texto
+          PERFIL_NOTAS: ${{ secrets.PERFIL_NOTAS }}             # opcional: qué destacar
+          CARTA_LUGAR: ${{ secrets.CARTA_LUGAR }}               # opcional: ciudad junto a la fecha
       - name: Guardar decisiones
         run: |
           git config user.name "github-actions[bot]"

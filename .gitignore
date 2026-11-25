@@ -2,3 +2,6 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .venv/
+
+# Tu CV y notas para probar la carta en local: NUNCA al repo (es público)
+perfil/

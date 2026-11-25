@@ -12,6 +12,9 @@ import hashlib
 from dataclasses import asdict, dataclass, field
 
 
+MAX_DESCRIPCION = 4000  # caracteres: suficiente para la carta, sin inflar ofertas.json
+
+
 @dataclass
 class Oferta:
     empresa: str
@@ -39,5 +42,7 @@ class Oferta:
     def a_dict(self) -> dict:
         datos = asdict(self)
         datos["id"] = self.id
-        datos.pop("descripcion")  # no hace falta publicarla en la web
+        # Guardamos la descripción (recortada) porque la carta de presentación
+        # la necesita cuando pulsas "Sí". La web no la enseña.
+        datos["descripcion"] = self.descripcion[:MAX_DESCRIPCION]
         return datos

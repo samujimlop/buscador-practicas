@@ -82,3 +82,28 @@ def actualizaciones(desde: int) -> list[dict]:
     """
     return llamar("getUpdates", offset=desde, timeout=0,
                   allowed_updates=["callback_query", "message"])
+
+
+def enviar_documento(documento, texto: str = "") -> dict:
+    """Manda un fichero (sendDocument).
+
+    `documento` puede ser:
+      - una ruta (Path) a un fichero de este ordenador: lo subimos.
+      - un texto con el file_id de un fichero que ya está en Telegram
+        (por ejemplo, tu CV, que le mandaste al bot una vez): no hay que subirlo.
+
+    Ojo: para subir ficheros Telegram no acepta JSON, sino "multipart/form-data"
+    (lo mismo que hace un formulario web con un <input type="file">).
+    """
+    url = URL_API.format(token=os.environ["TELEGRAM_TOKEN"], metodo="sendDocument")
+    datos = {"chat_id": chat_id(), "caption": texto, "parse_mode": "HTML"}
+    if isinstance(documento, str):
+        respuesta = requests.post(url, data={**datos, "document": documento}, timeout=TIEMPO_MAXIMO)
+    else:
+        with open(documento, "rb") as f:
+            respuesta = requests.post(url, data=datos, files={"document": (documento.name, f, "application/pdf")},
+                                      timeout=TIEMPO_MAXIMO)
+    resultado = respuesta.json()
+    if not resultado.get("ok"):
+        raise RuntimeError(f"Telegram sendDocument: {resultado.get('description', respuesta.status_code)}")
+    return resultado["result"]
