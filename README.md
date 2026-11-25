@@ -31,6 +31,39 @@ empresas.yaml ──► conectores ──► formato común ──► filtros �
 Si una empresa falla un día (web caída, cambio de API), las demás siguen y se
 conservan sus ofertas de ayer. La web enseña el estado de cada empresa abajo.
 
+## Alertas por Telegram
+
+Cada mañana, si hay ofertas nuevas, el bot te manda una por mensaje con dos
+botones: **✅ Sí, prepárala** y **❌ No**. Cada 30 minutos
+(`.github/workflows/respuestas.yml`) se leen los botones que has pulsado y se
+guardan en `data/decisiones.json`. Al pulsar "Sí", se llama a
+`buscador/candidatura.py`, que de momento solo te manda el enlace. La carta
+personalizada es la siguiente tarea.
+
+```
+búsqueda diaria ──► alertas.py ──► Telegram ──► tú pulsas ──► respuestas.py (cada 30 min) ──► candidatura.py
+```
+
+### Configurarlo (10 minutos)
+
+1. En Telegram, habla con **@BotFather**, escribe `/newbot` y sigue los pasos.
+   Te dará un **token** del tipo `123456:ABC...`. Es una contraseña: no la pegues en el código.
+2. Abre el chat con tu bot nuevo y mándale `/start` (si no, no te puede escribir).
+3. En el navegador, abre `https://api.telegram.org/bot<TOKEN>/getUpdates`.
+   Busca `"chat":{"id":` y apunta ese número: es tu **chat id**.
+4. En GitHub, ve a Settings → Secrets and variables → Actions → **New repository secret**, y crea:
+   - `TELEGRAM_TOKEN` con el token
+   - `TELEGRAM_CHAT_ID` con el número
+5. Pruébalo: Actions → "Actualizar ofertas" → **Run workflow**.
+
+**Seguridad:** cualquiera puede escribir a un bot si sabe su nombre, por eso
+`respuestas.py` solo hace caso a los clics que vienen de tu `TELEGRAM_CHAT_ID`.
+
+**Minutos de Actions:** la lectura cada 30 minutos son unas 34 ejecuciones al
+día, cerca de 1.000 minutos al mes. Entra en los 2.000 minutos gratis de un
+repo privado (3.000 con GitHub Pro). Si algún día se queda corto, cambia el
+`cron` o pasa a webhook.
+
 ## Probarlo en tu ordenador
 
 ```bash

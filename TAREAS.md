@@ -34,3 +34,6 @@ aún no haya conector, saberlo nos dice cuál conviene escribir antes.
 - Conector de SuccessFactors o Phenom (según lo que salga en la tarea 4).
 - Alertas por Telegram cuando aparezca una oferta nueva.
 - Afinar `filtros.py` con casos reales que se cuelen o se escapen (siempre con test).
+
+## 6. Carta de presentación con Claude (issue en GitHub)
+## 7. Carta y CV en PDF y envío por Telegram (issue en GitHub)
