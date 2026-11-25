@@ -1,17 +1,379 @@
 {
- "actualizado": "2026-11-25T12:37+00:00",
- "ofertas": [],
+ "actualizado": "2026-11-25T13:03+00:00",
+ "ofertas": [
+  {
+   "empresa": "KPMG",
+   "titulo": "Rocket Program Madrid - Prácticas People Analytics - Noviembre 2026",
+   "url": "https://carreras.kpmg.es/job/Madrid-Rocket-Program-Madrid-Pr%C3%A1cticas-People-Analytics-Noviembre-2026-28046/1420413333/?feedId=null&utm_source=J2WRSS&utm_medium=rss&utm_campaign=J2W_RSS",
+   "ciudad": "Madrid",
+   "ubicacion_original": "Madrid, ES, 28046",
+   "pais": "Spain",
+   "sector": "Consultoría",
+   "departamento": "",
+   "modalidad": "",
+   "fecha_publicacion": "2026-11-25",
+   "primera_vez_vista": "2026-11-25",
+   "etiquetas": [],
+   "id": "6ccce684780a"
+  },
+  {
+   "empresa": "KPMG",
+   "titulo": "Tech Program - Prácticas Auditoría Tecnológica - Enero 2027 Madrid",
+   "url": "https://carreras.kpmg.es/job/Madrid-Tech-Program-Pr%C3%A1cticas-Auditor%C3%ADa-Tecnol%C3%B3gica-Enero-2027-Madrid-28046/1459590833/?feedId=null&utm_source=J2WRSS&utm_medium=rss&utm_campaign=J2W_RSS",
+   "ciudad": "Madrid",
+   "ubicacion_original": "Madrid, ES, 28046",
+   "pais": "Spain",
+   "sector": "Consultoría",
+   "departamento": "",
+   "modalidad": "",
+   "fecha_publicacion": "2026-11-23",
+   "primera_vez_vista": "2026-11-25",
+   "etiquetas": [],
+   "id": "f896f6163489"
+  },
+  {
+   "empresa": "Deloitte",
+   "titulo": "Glow Up | Prácticas en Tecnología & Transformación - Ciberseguridad | Barcelona",
+   "url": "https://empleo.es.deloitte.com/job/Barcelona-Glow-Up-Pr%C3%A1cticas-en-Tecnolog%C3%ADa-&-Transformaci%C3%B3n-Ciberseguridad-Barcelona/1440346533/?feedId=null&utm_source=J2WRSS&utm_medium=rss&utm_campaign=J2W_RSS",
+   "ciudad": "Barcelona",
+   "ubicacion_original": "Barcelona, ES",
+   "pais": "Spain",
+   "sector": "Consultoría",
+   "departamento": "",
+   "modalidad": "",
+   "fecha_publicacion": "2026-11-21",
+   "primera_vez_vista": "2026-11-25",
+   "etiquetas": [],
+   "id": "66efc6f0c1f3"
+  },
+  {
+   "empresa": "KPMG",
+   "titulo": "Tech Program Barcelona - Prácticas I+D+I - Octubre 2026",
+   "url": "https://carreras.kpmg.es/job/Barcelona-L'Hospitalet-de-Llob-Tech-Program-Barcelona-Pr%C3%A1cticas-I%2BD%2BI-Octubre-2026-08908/1419199733/?feedId=null&utm_source=J2WRSS&utm_medium=rss&utm_campaign=J2W_RSS",
+   "ciudad": "Barcelona",
+   "ubicacion_original": "Barcelona L'Hospitalet de Llob, ES, 08908",
+   "pais": "Spain",
+   "sector": "Consultoría",
+   "departamento": "",
+   "modalidad": "",
+   "fecha_publicacion": "2026-11-20",
+   "primera_vez_vista": "2026-11-25",
+   "etiquetas": [],
+   "id": "27cba5279fb8"
+  },
+  {
+   "empresa": "KPMG",
+   "titulo": "Tech Program Technology and Transformation Enterprise Performance Management - Madrid Enero 2027",
+   "url": "https://carreras.kpmg.es/job/Madrid-Tech-Program-Technology-and-Transformation-Enterprise-Performance-Management-Madrid-Enero-2027-28046/1459315233/?feedId=null&utm_source=J2WRSS&utm_medium=rss&utm_campaign=J2W_RSS",
+   "ciudad": "Madrid",
+   "ubicacion_original": "Madrid, ES, 28046",
+   "pais": "Spain",
+   "sector": "Consultoría",
+   "departamento": "",
+   "modalidad": "",
+   "fecha_publicacion": "2026-11-20",
+   "primera_vez_vista": "2026-11-25",
+   "etiquetas": [],
+   "id": "38651996f529"
+  },
+  {
+   "empresa": "Telefónica",
+   "titulo": "Beca Talentum - Research Intern in Human-AI Alignment",
+   "url": "https://jobs.telefonica.com/job/BARCELONA-Beca-Talentum-Research-Intern-in-Human-AI-Alignment/1459036033/?feedId=null&utm_source=J2WRSS&utm_medium=rss&utm_campaign=J2W_RSS",
+   "ciudad": "Barcelona",
+   "ubicacion_original": "BARCELONA, ES",
+   "pais": "Spain",
+   "sector": "Telecomunicaciones",
+   "departamento": "",
+   "modalidad": "",
+   "fecha_publicacion": "2026-11-19",
+   "primera_vez_vista": "2026-11-25",
+   "etiquetas": [],
+   "id": "43176ab73c83"
+  },
+  {
+   "empresa": "Deloitte",
+   "titulo": "Glow Up Enterprise Technology | Tecnología & Transformación - Empieza tu carrera con impacto",
+   "url": "https://empleo.es.deloitte.com/job/Valencia-Glow-Up-Enterprise-Technology-Tecnolog%C3%ADa-&-Transformaci%C3%B3n-Empieza-tu-carrera-con-impacto/1458927833/?feedId=null&utm_source=J2WRSS&utm_medium=rss&utm_campaign=J2W_RSS",
+   "ciudad": "Valencia",
+   "ubicacion_original": "Valencia, ES",
+   "pais": "Spain",
+   "sector": "Consultoría",
+   "departamento": "",
+   "modalidad": "",
+   "fecha_publicacion": "2026-11-19",
+   "primera_vez_vista": "2026-11-25",
+   "etiquetas": [],
+   "id": "47dcb95c9c98"
+  },
+  {
+   "empresa": "KPMG",
+   "titulo": "Tech Program - Beca Consultor Real Estate SAP Sabadell",
+   "url": "https://carreras.kpmg.es/job/Sabadell-Tech-Program-Beca-Consultor-Real-Estate-SAP-Sabadell-08202/1398703333/?feedId=null&utm_source=J2WRSS&utm_medium=rss&utm_campaign=J2W_RSS",
+   "ciudad": "Barcelona",
+   "ubicacion_original": "Sabadell, ES, 08202",
+   "pais": "Spain",
+   "sector": "Consultoría",
+   "departamento": "",
+   "modalidad": "",
+   "fecha_publicacion": "2026-11-19",
+   "primera_vez_vista": "2026-11-25",
+   "etiquetas": [],
+   "id": "b131e1cff548"
+  },
+  {
+   "empresa": "Telefónica",
+   "titulo": "Beca Talentum - AI engineer - AI Native SOC",
+   "url": "https://jobs.telefonica.com/job/MADRID-Beca-Talentum-AI-engineer-AI-Native-SOC/1458156433/?feedId=null&utm_source=J2WRSS&utm_medium=rss&utm_campaign=J2W_RSS",
+   "ciudad": "Madrid",
+   "ubicacion_original": "MADRID, ES",
+   "pais": "Spain",
+   "sector": "Telecomunicaciones",
+   "departamento": "",
+   "modalidad": "",
+   "fecha_publicacion": "2026-11-17",
+   "primera_vez_vista": "2026-11-25",
+   "etiquetas": [],
+   "id": "8d5e63eee59b"
+  },
+  {
+   "empresa": "KPMG",
+   "titulo": "Tech Program - Prácticas Forensic Smart - Enero 2027 Madrid",
+   "url": "https://carreras.kpmg.es/job/Madrid-Tech-Program-Pr%C3%A1cticas-Forensic-Smart-Enero-2027-Madrid-28046/1449059633/?feedId=null&utm_source=J2WRSS&utm_medium=rss&utm_campaign=J2W_RSS",
+   "ciudad": "Madrid",
+   "ubicacion_original": "Madrid, ES, 28046",
+   "pais": "Spain",
+   "sector": "Consultoría",
+   "departamento": "",
+   "modalidad": "",
+   "fecha_publicacion": "2026-11-17",
+   "primera_vez_vista": "2026-11-25",
+   "etiquetas": [],
+   "id": "8360851096f2"
+  },
+  {
+   "empresa": "KPMG",
+   "titulo": "Tech Program - Prácticas IT Asset Management (ITAM) - Enero 2027 Madrid",
+   "url": "https://carreras.kpmg.es/job/Madrid-Tech-Program-Pr%C3%A1cticas-IT-Asset-Management-%28ITAM%29-Enero-2027-Madrid-28046/1447971733/?feedId=null&utm_source=J2WRSS&utm_medium=rss&utm_campaign=J2W_RSS",
+   "ciudad": "Madrid",
+   "ubicacion_original": "Madrid, ES, 28046",
+   "pais": "Spain",
+   "sector": "Consultoría",
+   "departamento": "",
+   "modalidad": "",
+   "fecha_publicacion": "2026-11-13",
+   "primera_vez_vista": "2026-11-25",
+   "etiquetas": [],
+   "id": "b50ab1394055"
+  },
+  {
+   "empresa": "Telefónica",
+   "titulo": "Becas Telefónica Madrid",
+   "url": "https://jobs.telefonica.com/job/MADRID-Becas-Telef%C3%B3nica-Madrid/1258440301/?feedId=null&utm_source=J2WRSS&utm_medium=rss&utm_campaign=J2W_RSS",
+   "ciudad": "Madrid",
+   "ubicacion_original": "MADRID, ES",
+   "pais": "Spain",
+   "sector": "Telecomunicaciones",
+   "departamento": "",
+   "modalidad": "",
+   "fecha_publicacion": "2026-11-12",
+   "primera_vez_vista": "2026-11-25",
+   "etiquetas": [],
+   "id": "83b9069ea8e9"
+  },
+  {
+   "empresa": "Telefónica",
+   "titulo": "BECAS TELEFONICA GLOBAL TECHNOLOGY LOGROÑO",
+   "url": "https://jobs.telefonica.com/job/BECAS-TELEFONICA-GLOBAL-TECHNOLOGY-LOGRO%C3%91O/1226939801/?feedId=null&utm_source=J2WRSS&utm_medium=rss&utm_campaign=J2W_RSS",
+   "ciudad": "Logroño",
+   "ubicacion_original": "ES",
+   "pais": "Spain",
+   "sector": "Telecomunicaciones",
+   "departamento": "",
+   "modalidad": "",
+   "fecha_publicacion": "2026-11-09",
+   "primera_vez_vista": "2026-11-25",
+   "etiquetas": [],
+   "id": "6820108a6f7a"
+  },
+  {
+   "empresa": "Deloitte",
+   "titulo": "Glow Up - Prácticas DLegal Tech",
+   "url": "https://empleo.es.deloitte.com/job/Madrid-Glow-Up-Pr%C3%A1cticas-DLegal-Tech/1394429333/?feedId=null&utm_source=J2WRSS&utm_medium=rss&utm_campaign=J2W_RSS",
+   "ciudad": "Madrid",
+   "ubicacion_original": "Madrid, ES",
+   "pais": "Spain",
+   "sector": "Consultoría",
+   "departamento": "",
+   "modalidad": "",
+   "fecha_publicacion": "2026-11-08",
+   "primera_vez_vista": "2026-11-25",
+   "etiquetas": [],
+   "id": "f8db2d700f46"
+  },
+  {
+   "empresa": "Indra / Minsait",
+   "titulo": "Engineering Trainee (University Student) - Gijón",
+   "url": "https://careers.indragroup.com/job/Asturias-Engineering-Trainee-%28University-Student%29-Gij%C3%B3n-O/1336946955/?feedId=null&utm_source=J2WRSS&utm_medium=rss&utm_campaign=J2W_RSS",
+   "ciudad": "Asturias",
+   "ubicacion_original": "Asturias, O, ES",
+   "pais": "Spain",
+   "sector": "Tecnología",
+   "departamento": "",
+   "modalidad": "",
+   "fecha_publicacion": "2026-10-29",
+   "primera_vez_vista": "2026-11-25",
+   "etiquetas": [],
+   "id": "3a4a1a5e6e8b"
+  }
+ ],
  "estado": [
+  {
+   "empresa": "Telefónica",
+   "estado": "ok",
+   "total": 41,
+   "practicas_it": 4
+  },
+  {
+   "empresa": "Indra / Minsait",
+   "estado": "ok",
+   "total": 45,
+   "practicas_it": 1
+  },
+  {
+   "empresa": "CaixaBank",
+   "estado": "ok",
+   "total": 38,
+   "practicas_it": 0
+  },
+  {
+   "empresa": "Deloitte",
+   "estado": "ok",
+   "total": 56,
+   "practicas_it": 3
+  },
+  {
+   "empresa": "KPMG",
+   "estado": "ok",
+   "total": 31,
+   "practicas_it": 7
+  },
+  {
+   "empresa": "EY",
+   "estado": "ok",
+   "total": 89,
+   "practicas_it": 0
+  },
+  {
+   "empresa": "Amadeus",
+   "estado": "a mano",
+   "plataforma": "manual",
+   "web": "https://amadeus.wd502.myworkdayjobs.com/jobs?q=intern",
+   "sector": "Tecnología"
+  },
+  {
+   "empresa": "Accenture",
+   "estado": "a mano",
+   "plataforma": "manual",
+   "web": "https://accenture.wd103.myworkdayjobs.com/AccentureCareers?q=becario",
+   "sector": "Consultoría"
+  },
+  {
+   "empresa": "Banco Santander",
+   "estado": "a mano",
+   "plataforma": "manual",
+   "web": "https://santander.wd3.myworkdayjobs.com/es/SantanderCareers?q=pr%C3%A1cticas",
+   "sector": "Banca"
+  },
+  {
+   "empresa": "BBVA",
+   "estado": "a mano",
+   "plataforma": "manual",
+   "web": "https://bbva.wd3.myworkdayjobs.com/es/BBVA?q=becas",
+   "sector": "Banca"
+  },
+  {
+   "empresa": "Repsol",
+   "estado": "a mano",
+   "plataforma": "manual",
+   "web": "https://repsol.wd3.myworkdayjobs.com/es/Repsol?q=pr%C3%A1cticas",
+   "sector": "Energía"
+  },
+  {
+   "empresa": "Ferrovial",
+   "estado": "a mano",
+   "plataforma": "manual",
+   "web": "https://ferrovial.wd3.myworkdayjobs.com/es/Ferrovial_Career_Site?q=pr%C3%A1cticas",
+   "sector": "Infraestructuras"
+  },
+  {
+   "empresa": "Acciona",
+   "estado": "a mano",
+   "plataforma": "manual",
+   "web": "https://acciona.wd3.myworkdayjobs.com/es/ACCIONA_Employment_Channel?q=pr%C3%A1cticas",
+   "sector": "Infraestructuras"
+  },
+  {
+   "empresa": "Airbus",
+   "estado": "a mano",
+   "plataforma": "manual",
+   "web": "https://ag.wd3.myworkdayjobs.com/es/Airbus?q=intern%20spain",
+   "sector": "Aeroespacial"
+  },
+  {
+   "empresa": "Naturgy",
+   "estado": "a mano",
+   "plataforma": "manual",
+   "web": "https://www.naturgy.com/trabaja-con-nosotros/",
+   "sector": "Energía"
+  },
+  {
+   "empresa": "Endesa",
+   "estado": "a mano",
+   "plataforma": "manual",
+   "web": "https://jobs.enel.com/es_ES/careers/JobOpeningsSpain",
+   "sector": "Energía"
+  },
+  {
+   "empresa": "GMV",
+   "estado": "a mano",
+   "plataforma": "manual",
+   "web": "https://gmv.csod.com/ux/ats/careersite/4/home?c=gmv",
+   "sector": "Tecnología"
+  },
+  {
+   "empresa": "Moeve",
+   "estado": "a mano",
+   "plataforma": "manual",
+   "web": "https://www.moeveglobal.com/es/empleo",
+   "sector": "Energía"
+  },
+  {
+   "empresa": "Microsoft",
+   "estado": "a mano",
+   "plataforma": "manual",
+   "web": "https://apply.careers.microsoft.com/careers?lc=Spain",
+   "sector": "Tecnología"
+  },
+  {
+   "empresa": "Google",
+   "estado": "a mano",
+   "plataforma": "manual",
+   "web": "https://www.google.com/about/careers/applications/jobs/results?location=Spain&target_level=INTERN_AND_APPRENTICE",
+   "sector": "Tecnología"
+  },
+  {
+   "empresa": "Amazon / AWS",
+   "estado": "a mano",
+   "plataforma": "manual",
+   "web": "https://www.amazon.jobs/es/search?country=ESP&category%5B%5D=software-development&job_type%5B%5D=Intern",
+   "sector": "Tecnología"
+  },
   {
    "empresa": "Cabify",
    "estado": "ok",
    "total": 45,
    "practicas_it": 0
-  },
-  {
-   "empresa": "Glovo",
-   "estado": "error",
-   "detalle": "404 Client Error: Not Found for url: https://boards-api.greenhouse.io/v1/boards/glovo/jobs?content=true"
   },
   {
    "empresa": "Typeform",
@@ -20,169 +382,102 @@
    "practicas_it": 0
   },
   {
-   "empresa": "Telefónica",
+   "empresa": "Wallapop",
    "estado": "sin conector",
-   "plataforma": "pendiente"
+   "plataforma": "pendiente",
+   "web": "",
+   "sector": "Tecnología"
   },
   {
    "empresa": "Prosegur",
    "estado": "sin conector",
-   "plataforma": "pendiente"
-  },
-  {
-   "empresa": "Indra / Minsait",
-   "estado": "sin conector",
-   "plataforma": "pendiente"
-  },
-  {
-   "empresa": "Amadeus",
-   "estado": "sin conector",
-   "plataforma": "pendiente"
-  },
-  {
-   "empresa": "GMV",
-   "estado": "sin conector",
-   "plataforma": "pendiente"
-  },
-  {
-   "empresa": "Banco Santander",
-   "estado": "sin conector",
-   "plataforma": "pendiente"
-  },
-  {
-   "empresa": "BBVA",
-   "estado": "sin conector",
-   "plataforma": "pendiente"
-  },
-  {
-   "empresa": "CaixaBank",
-   "estado": "sin conector",
-   "plataforma": "pendiente"
-  },
-  {
-   "empresa": "Banco Sabadell",
-   "estado": "sin conector",
-   "plataforma": "pendiente"
-  },
-  {
-   "empresa": "Bankinter",
-   "estado": "sin conector",
-   "plataforma": "pendiente"
-  },
-  {
-   "empresa": "Mapfre",
-   "estado": "sin conector",
-   "plataforma": "pendiente"
-  },
-  {
-   "empresa": "Iberdrola",
-   "estado": "sin conector",
-   "plataforma": "pendiente"
-  },
-  {
-   "empresa": "Repsol",
-   "estado": "sin conector",
-   "plataforma": "pendiente"
-  },
-  {
-   "empresa": "Endesa",
-   "estado": "sin conector",
-   "plataforma": "pendiente"
-  },
-  {
-   "empresa": "Naturgy",
-   "estado": "sin conector",
-   "plataforma": "pendiente"
-  },
-  {
-   "empresa": "Moeve",
-   "estado": "sin conector",
-   "plataforma": "pendiente"
+   "plataforma": "pendiente",
+   "web": "https://www.prosegur.es/trabaja-con-nosotros",
+   "sector": "Seguridad"
   },
   {
    "empresa": "Inditex",
    "estado": "sin conector",
-   "plataforma": "pendiente"
+   "plataforma": "pendiente",
+   "web": "",
+   "sector": "Retail"
+  },
+  {
+   "empresa": "Iberdrola",
+   "estado": "sin conector",
+   "plataforma": "pendiente",
+   "web": "https://www.iberdrola.com/talento",
+   "sector": "Energía"
+  },
+  {
+   "empresa": "Mapfre",
+   "estado": "sin conector",
+   "plataforma": "pendiente",
+   "web": "",
+   "sector": "Seguros"
+  },
+  {
+   "empresa": "Banco Sabadell",
+   "estado": "sin conector",
+   "plataforma": "pendiente",
+   "web": "",
+   "sector": "Banca"
+  },
+  {
+   "empresa": "Bankinter",
+   "estado": "sin conector",
+   "plataforma": "pendiente",
+   "web": "",
+   "sector": "Banca"
   },
   {
    "empresa": "Mercadona",
    "estado": "sin conector",
-   "plataforma": "pendiente"
+   "plataforma": "pendiente",
+   "web": "",
+   "sector": "Retail"
   },
   {
    "empresa": "El Corte Inglés",
    "estado": "sin conector",
-   "plataforma": "pendiente"
-  },
-  {
-   "empresa": "Ferrovial",
-   "estado": "sin conector",
-   "plataforma": "pendiente"
-  },
-  {
-   "empresa": "Acciona",
-   "estado": "sin conector",
-   "plataforma": "pendiente"
-  },
-  {
-   "empresa": "Airbus",
-   "estado": "sin conector",
-   "plataforma": "pendiente"
+   "plataforma": "pendiente",
+   "web": "",
+   "sector": "Retail"
   },
   {
    "empresa": "SEAT / CUPRA",
    "estado": "sin conector",
-   "plataforma": "pendiente"
-  },
-  {
-   "empresa": "Accenture",
-   "estado": "sin conector",
-   "plataforma": "pendiente"
+   "plataforma": "pendiente",
+   "web": "",
+   "sector": "Automoción"
   },
   {
    "empresa": "NTT DATA",
    "estado": "sin conector",
-   "plataforma": "pendiente"
+   "plataforma": "pendiente",
+   "web": "",
+   "sector": "Consultoría"
   },
   {
    "empresa": "Capgemini",
    "estado": "sin conector",
-   "plataforma": "pendiente"
-  },
-  {
-   "empresa": "Deloitte",
-   "estado": "sin conector",
-   "plataforma": "pendiente"
+   "plataforma": "pendiente",
+   "web": "",
+   "sector": "Consultoría"
   },
   {
    "empresa": "PwC",
    "estado": "sin conector",
-   "plataforma": "pendiente"
+   "plataforma": "pendiente",
+   "web": "",
+   "sector": "Consultoría"
   },
   {
-   "empresa": "EY",
+   "empresa": "Glovo",
    "estado": "sin conector",
-   "plataforma": "pendiente"
-  },
-  {
-   "empresa": "KPMG",
-   "estado": "sin conector",
-   "plataforma": "pendiente"
-  },
-  {
-   "empresa": "Google",
-   "estado": "sin conector",
-   "plataforma": "pendiente"
-  },
-  {
-   "empresa": "Microsoft",
-   "estado": "sin conector",
-   "plataforma": "pendiente"
-  },
-  {
-   "empresa": "Amazon / AWS",
-   "estado": "sin conector",
-   "plataforma": "pendiente"
+   "plataforma": "pendiente",
+   "web": "",
+   "sector": "Tecnología"
   }
  ]
 }
