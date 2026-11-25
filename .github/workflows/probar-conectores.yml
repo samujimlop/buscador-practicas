@@ -21,8 +21,7 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Probar
         env:
-          EMPRESAS: ${{ inputs.empresas }}
+          EMPRESAS: ${{ inputs.empresas || 'EY' }}
         run: |
           IFS=',' read -ra LISTA <<< "$EMPRESAS"
           python -m herramientas.probar_conectores "${LISTA[@]}"
-          python herramientas/ver_rss.py https://careers.ey.com/ey   # TEMPORAL

@@ -19,7 +19,7 @@ empresas:
   - {nombre: CaixaBank, sector: Banca, plataforma: successfactors, portal: "https://caixabankcareers.com"}
   - {nombre: Deloitte, sector: Consultoría, plataforma: successfactors, portal: "https://empleo.es.deloitte.com"}
   - {nombre: KPMG, sector: Consultoría, plataforma: successfactors, portal: "https://carreras.kpmg.es"}
-  - {nombre: EY, sector: Consultoría, plataforma: successfactors, portal: "https://careers.ey.com/ey"}
+  - {nombre: EY, sector: Consultoría, plataforma: successfactors, portal: "https://careers.ey.com"}
 
   # --- Workday ---------------------------------------------------------------
   # El conector funciona (ver tests), pero el 2026-11-25 Workday respondió 429
