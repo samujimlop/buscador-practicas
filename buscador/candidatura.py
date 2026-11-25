@@ -9,7 +9,8 @@ La candidatura la envías TÚ desde la web de la empresa, después de revisar
 la carta. El bot nunca aplica por su cuenta.
 
 Tu CV en PDF: no cabe en un secreto de GitHub (máximo 48 KB), así que se lo
-mandas una vez al bot por Telegram. Telegram lo guarda y nos da un
+mandas una vez al bot por Telegram. Sirve para dos cosas: Claude lo lee para
+escribir la carta y el bot te lo devuelve junto a ella. Telegram lo guarda y nos da un
 identificador (file_id) que apuntamos en data/cv_telegram.json. Ese
 identificador solo funciona con el token de tu bot, así que no sirve de
 nada a quien lo lea en el repo.
@@ -52,8 +53,10 @@ def preparar(oferta: dict) -> None:
     titulo = telegram.escapar(oferta["titulo"])
     enlace = f'🔗 <a href="{telegram.escapar(oferta["url"])}">Aplicar en la web de {empresa}</a>'
 
+    cv = cv_guardado()
     try:
-        texto = carta.generar_carta(oferta)
+        cv_pdf = telegram.descargar_fichero(cv["file_id"]) if cv else None
+        texto = carta.generar_carta(oferta, cv_pdf)
         with tempfile.TemporaryDirectory() as carpeta:
             ruta = Path(carpeta) / pdf.nombre_fichero(oferta["empresa"])
             pdf.carta_a_pdf(texto, ruta, lugar=os.environ.get("CARTA_LUGAR", ""))
@@ -67,7 +70,6 @@ def preparar(oferta: dict) -> None:
         telegram.enviar(f"⚠️ Algo ha fallado preparando la carta ({type(error).__name__}).\n\n{enlace}")
         return
 
-    cv = cv_guardado()
     if cv:
         telegram.enviar_documento(cv["file_id"], "📎 Tu CV")
     else:

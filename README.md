@@ -64,13 +64,14 @@ Más secretos, en el mismo sitio (Settings → Secrets and variables → Actions
 | Secreto | Qué es |
 |---|---|
 | `ANTHROPIC_API_KEY` | Tu clave de la API de Claude (console.anthropic.com). Cada carta cuesta unos céntimos. |
-| `CV_TEXTO` | Tu CV en texto (Markdown). Claude solo usa lo que pone aquí: no inventa experiencia. |
+| `CV_TEXTO` | Opcional. Tu CV en texto. Si no está, Claude lee el PDF que le mandaste al bot. |
 | `PERFIL_NOTAS` | Opcional. Lo que quieres que destaque siempre ("prefiero backend", "disponible desde febrero"...). |
 | `CARTA_LUGAR` | Opcional. La ciudad que va delante de la fecha en la carta. |
 
 **Tu CV en PDF:** mándaselo una vez al bot por el chat de Telegram. Se guarda
 su identificador en `data/cv_telegram.json` (solo funciona con el token de tu
-bot) y se adjunta a cada carta. Si mandas otro PDF, sustituye al anterior.
+bot). Claude lo lee para escribir cada carta (solo usa lo que pone: no inventa
+experiencia) y el bot te lo adjunta. Si mandas otro PDF, sustituye al anterior.
 
 El repo es público: el CV y las cartas **nunca** se guardan en el repo ni se
 imprimen en los logs. En tu ordenador puedes probar con `perfil/cv.md`

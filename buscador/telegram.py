@@ -107,3 +107,18 @@ def enviar_documento(documento, texto: str = "") -> dict:
     if not resultado.get("ok"):
         raise RuntimeError(f"Telegram sendDocument: {resultado.get('description', respuesta.status_code)}")
     return resultado["result"]
+
+
+def descargar_fichero(file_id: str) -> bytes:
+    """Descarga un fichero que está en Telegram (p. ej. tu CV) a partir de su file_id.
+
+    Dos pasos: getFile nos dice en qué ruta está, y luego lo bajamos de
+    https://api.telegram.org/file/bot<TOKEN>/<ruta>. Esa URL lleva el token:
+    nunca la imprimas.
+    """
+    ruta = llamar("getFile", file_id=file_id)["file_path"]
+    url = f"https://api.telegram.org/file/bot{os.environ['TELEGRAM_TOKEN']}/{ruta}"
+    respuesta = requests.get(url, timeout=TIEMPO_MAXIMO)
+    if respuesta.status_code != 200:
+        raise RuntimeError(f"Telegram: no se pudo descargar el fichero ({respuesta.status_code})")
+    return respuesta.content

@@ -44,17 +44,28 @@ def test_el_prompt_lleva_cv_y_oferta(cv):
     assert texto.startswith("Estimado equipo")
     peticion = claude.peticiones[0]
     assert peticion["model"] == "claude-opus-5-5"
-    mensaje = peticion["messages"][0]["content"]
+    mensaje = peticion["messages"][0]["content"][-1]["text"]
     assert CV_FALSO in mensaje
     assert "Indra / Minsait" in mensaje and "Java y Spring" in mensaje
     assert "No inventes" in peticion["system"]
+
+
+def test_cv_en_pdf_va_como_documento(monkeypatch, tmp_path):
+    monkeypatch.delenv("CV_TEXTO", raising=False)
+    monkeypatch.setattr(carta, "CARPETA_PERFIL", tmp_path)
+    claude = ClaudeFalso()
+    carta.generar_carta(OFERTA, cv_pdf=b"%PDF-1.4 falso", cliente=claude)
+    documento, texto = claude.peticiones[0]["messages"][0]["content"]
+    assert documento["type"] == "document"
+    assert documento["source"]["media_type"] == "application/pdf"
+    assert "PDF adjunto" in texto["text"] and "Java y Spring" in texto["text"]
 
 
 def test_sin_cv_no_llama_a_claude(monkeypatch, tmp_path):
     monkeypatch.delenv("CV_TEXTO", raising=False)
     monkeypatch.setattr(carta, "CARPETA_PERFIL", tmp_path)  # sin perfil/cv.md
     claude = ClaudeFalso()
-    with pytest.raises(carta.CartaError, match="CV_TEXTO"):
+    with pytest.raises(carta.CartaError, match="PDF"):
         carta.generar_carta(OFERTA, cliente=claude)
     assert claude.peticiones == []
 
@@ -86,7 +97,8 @@ def bot(monkeypatch, tmp_path):
 
 
 def test_preparar_manda_carta_cv_y_enlace(bot, cv, monkeypatch):
-    monkeypatch.setattr(carta, "generar_carta", lambda oferta: "Estimado equipo:\n\nHola.")
+    monkeypatch.setattr(telegram, "descargar_fichero", lambda file_id: b"%PDF")
+    monkeypatch.setattr(carta, "generar_carta", lambda oferta, cv_pdf: "Estimado equipo:\n\nHola.")
     candidatura.guardar_cv({"file_id": "FILE123", "file_name": "CV.pdf"})
     candidatura.preparar(OFERTA)
     assert bot[0] == ("doc", "Carta_Indra_Minsait.pdf")
@@ -95,7 +107,7 @@ def test_preparar_manda_carta_cv_y_enlace(bot, cv, monkeypatch):
 
 
 def test_preparar_sin_creditos_manda_el_enlace(bot, monkeypatch):
-    def sin_creditos(oferta):
+    def sin_creditos(oferta, cv_pdf):
         raise carta.CartaError("La API rechazó la petición: credit balance is too low")
     monkeypatch.setattr(carta, "generar_carta", sin_creditos)
     candidatura.preparar(OFERTA)

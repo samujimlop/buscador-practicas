@@ -6,7 +6,9 @@ el código solo junta las piezas y hace una llamada a la API.
 
 De dónde sale cada cosa:
     ANTHROPIC_API_KEY   secreto de GitHub; el SDK lo lee solo del entorno
-    CV_TEXTO            secreto con tu CV en texto (Markdown)
+    Tu CV               el PDF que le mandaste al bot por Telegram: Claude
+                        sabe leer PDFs, así que se lo pasamos tal cual.
+                        (Alternativa: el secreto CV_TEXTO con el CV en texto.)
     PERFIL_NOTAS        secreto opcional: lo que quieres destacar siempre
                         (p. ej. "prefiero backend", "disponible desde febrero")
 En tu ordenador puedes usar perfil/cv.md y perfil/notas.md (perfil/ está en
@@ -17,6 +19,7 @@ En tu ordenador puedes usar perfil/cv.md y perfil/notas.md (perfil/ está en
 
 from __future__ import annotations
 
+import base64
 import os
 from pathlib import Path
 
@@ -91,12 +94,31 @@ class CartaError(Exception):
     """Algo impidió escribir la carta (falta el CV, sin créditos, rechazo...)."""
 
 
-def generar_carta(oferta: dict, cliente: anthropic.Anthropic | None = None) -> str:
-    cv = leer_perfil("CV_TEXTO", "cv.md")
-    if not cv:
-        raise CartaError("Falta tu CV: crea el secreto CV_TEXTO")
+def contenido_para_claude(oferta: dict, cv_pdf: bytes | None) -> list[dict]:
+    """El mensaje para Claude: el CV (en texto o como PDF adjunto) y la oferta.
+
+    Un mensaje puede tener varios "bloques": aquí, si hay PDF, primero va el
+    documento y después el texto con las instrucciones de la oferta.
+    """
     notas = leer_perfil("PERFIL_NOTAS", "notas.md")
-    mensaje = construir_mensaje(oferta, cv, notas, descripcion_oferta(oferta))
+    cv_texto = leer_perfil("CV_TEXTO", "cv.md")
+    bloques = []
+    if cv_texto:
+        cv = cv_texto
+    elif cv_pdf:
+        cv = "(Es el documento PDF adjunto.)"
+        bloques.append({"type": "document", "title": "CV del candidato", "source": {
+            "type": "base64", "media_type": "application/pdf",
+            "data": base64.b64encode(cv_pdf).decode("ascii")}})
+    else:
+        raise CartaError("Falta tu CV: mándamelo en PDF por este chat")
+    bloques.append({"type": "text", "text": construir_mensaje(oferta, cv, notas, descripcion_oferta(oferta))})
+    return bloques
+
+
+def generar_carta(oferta: dict, cv_pdf: bytes | None = None,
+                  cliente: anthropic.Anthropic | None = None) -> str:
+    contenido = contenido_para_claude(oferta, cv_pdf)
 
     cliente = cliente or anthropic.Anthropic()  # lee ANTHROPIC_API_KEY del entorno
     try:
@@ -109,7 +131,7 @@ def generar_carta(oferta: dict, cliente: anthropic.Anthropic | None = None) -> s
             # la repite sola con otro modelo en vez de devolver nada.
             betas=["server-side-fallback-2026-07-01"],
             fallbacks="default",
-            messages=[{"role": "user", "content": mensaje}],
+            messages=[{"role": "user", "content": contenido}],
         )
     except anthropic.AuthenticationError as e:
         raise CartaError("La clave ANTHROPIC_API_KEY no es válida") from e
