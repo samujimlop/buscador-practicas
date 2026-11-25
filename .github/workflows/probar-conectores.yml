@@ -2,8 +2,6 @@
 # Actions → "Probar conectores" → Run workflow (puedes poner empresas concretas).
 name: Probar conectores
 on:
-  push:
-    branches: [conectores-grandes]   # TEMPORAL
   workflow_dispatch:
     inputs:
       empresas:
@@ -21,7 +19,7 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Probar
         env:
-          EMPRESAS: ${{ inputs.empresas || 'EY' }}
+          EMPRESAS: ${{ inputs.empresas }}
         run: |
           IFS=',' read -ra LISTA <<< "$EMPRESAS"
           python -m herramientas.probar_conectores "${LISTA[@]}"
