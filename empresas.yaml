@@ -21,11 +21,14 @@ empresas:
   - {nombre: KPMG, sector: Consultoría, plataforma: successfactors, portal: "https://carreras.kpmg.es"}
   - {nombre: EY, sector: Consultoría, plataforma: successfactors, portal: "https://careers.ey.com/ey"}
 
-  # --- Workday (API JSON) ---------------------------------------------------
-  - {nombre: Amadeus, sector: Tecnología, plataforma: workday, host: amadeus.wd502, tenant: amadeus, sitio: jobs}
-  - {nombre: Accenture, sector: Consultoría, plataforma: workday, host: accenture.wd103, tenant: accenture, sitio: AccentureCareers}
-
-  # --- Workday que bloquean peticiones desde servidores (429): a mano --------
+  # --- Workday ---------------------------------------------------------------
+  # El conector funciona (ver tests), pero el 2026-11-25 Workday respondió 429
+  # ("demasiadas peticiones") a TODAS las peticiones desde GitHub Actions.
+  # No nos saltamos ese bloqueo: quedan "a mano" con su enlace. Dejamos los
+  # datos del conector (host/tenant/sitio) por si algún día lo ejecutas desde
+  # tu ordenador: basta con cambiar `plataforma: manual` por `plataforma: workday`.
+  - {nombre: Amadeus, sector: Tecnología, plataforma: manual, host: amadeus.wd502, tenant: amadeus, sitio: jobs, web: "https://amadeus.wd502.myworkdayjobs.com/jobs?q=intern"}
+  - {nombre: Accenture, sector: Consultoría, plataforma: manual, host: accenture.wd103, tenant: accenture, sitio: AccentureCareers, web: "https://accenture.wd103.myworkdayjobs.com/AccentureCareers?q=becario"}
   - {nombre: Banco Santander, sector: Banca, plataforma: manual, web: "https://santander.wd3.myworkdayjobs.com/es/SantanderCareers?q=pr%C3%A1cticas"}
   - {nombre: BBVA, sector: Banca, plataforma: manual, web: "https://bbva.wd3.myworkdayjobs.com/es/BBVA?q=becas"}
   - {nombre: Repsol, sector: Energía, plataforma: manual, web: "https://repsol.wd3.myworkdayjobs.com/es/Repsol?q=pr%C3%A1cticas"}

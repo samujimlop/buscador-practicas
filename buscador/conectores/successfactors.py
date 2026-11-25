@@ -28,6 +28,7 @@ En empresas.yaml:
 
 from __future__ import annotations
 
+import html
 import re
 import time
 import xml.etree.ElementTree as ET
@@ -50,12 +51,39 @@ def descargar(portal: str, busquedas: list[str] = BUSQUEDAS) -> list[dict]:
         r = s.get(f"{portal.rstrip('/')}/services/rss/job/",
                   params={"locale": "es_ES", "keywords": f"({palabra})"}, timeout=TIEMPO_MAXIMO)
         r.raise_for_status()
-        for item in ET.fromstring(r.content).iter("item"):
-            crudo = {campo: (item.findtext(campo) or "").strip()
-                     for campo in ("title", "link", "description", "pubDate")}
+        # Decodificamos nosotros: si el servidor no dice la codificación, requests
+        # supone ISO-8859-1 y las tildes saldrían rotas.
+        for crudo in leer_items(r.content.decode("utf-8", errors="replace")):
             vistos.setdefault(crudo["link"], crudo)
         time.sleep(PAUSA)
     return list(vistos.values())
+
+
+CAMPOS = ("title", "link", "description", "pubDate")
+
+
+def leer_items(xml: str) -> list[dict]:
+    """Lee los <item> del RSS.
+
+    Primero lo intentamos "bien", con un parser XML de verdad. Algunos portales
+    (EY) generan XML roto (un & sin escapar en una descripción) y el parser se
+    niega. En ese caso, plan B: sacamos cada campo con expresiones regulares.
+    Así una oferta mal escrita no nos hace perder todas las demás.
+    """
+    try:
+        return [{c: (i.findtext(c) or "").strip() for c in CAMPOS}
+                for i in ET.fromstring(xml.encode("utf-8")).iter("item")]
+    except ET.ParseError:
+        items = []
+        for bloque in re.findall(r"<item>(.*?)</item>", xml, re.S):
+            crudo = {}
+            for c in CAMPOS:
+                m = re.search(rf"<{c}>(.*?)</{c}>", bloque, re.S)
+                valor = m.group(1).strip() if m else ""
+                valor = re.sub(r"^<!\[CDATA\[(.*)\]\]>$", r"\1", valor, flags=re.S)
+                crudo[c] = html.unescape(valor) if c != "description" else valor
+            items.append(crudo)
+        return items
 
 
 # "Prácticas Consultor/a I+D (La Coruña, ES, 15003)" -> ("Prácticas Consultor/a I+D", "La Coruña, ES, 15003")
