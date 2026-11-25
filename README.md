@@ -74,6 +74,23 @@ python -m buscador.main     # busca ofertas de verdad y escribe docs/ofertas.jso
 python -m http.server -d docs 8000   # abre http://localhost:8000
 ```
 
+## Plataformas soportadas
+
+| Plataforma | Conector | Empresas (nov. 2026) |
+|---|---|---|
+| SAP SuccessFactors (RSS) | `successfactors.py` | Telefónica, Indra/Minsait, CaixaBank, Deloitte, KPMG, EY |
+| Greenhouse | `greenhouse.py` | Cabify, Typeform |
+| Workday | `workday.py` (bloqueado desde GitHub, ver abajo) | Santander, BBVA, Repsol, Ferrovial, Acciona, Airbus, Amadeus, Accenture |
+
+**Workday** responde `429 Too Many Requests` a las peticiones que salen de los
+servidores de GitHub. No intentamos saltarnos ese bloqueo: esas empresas van
+con `plataforma: manual` y la web las enseña en "Revisa también a mano" con el
+enlace a su buscador. El conector funciona (tiene tests); si algún día lo
+ejecutas desde tu ordenador, cambia `manual` por `workday` en `empresas.yaml`.
+
+Para probar conectores contra las webs reales sin guardar nada:
+Actions → **Probar conectores** → Run workflow.
+
 ## Añadir una empresa
 
 Si su plataforma ya tiene conector, basta con añadirla a `empresas.yaml`.

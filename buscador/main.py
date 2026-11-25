@@ -50,7 +50,14 @@ def ejecutar(empresas: list[dict], anterior: dict, hoy: str) -> dict:
         plataforma = empresa.get("plataforma", "pendiente")
         conector = CONECTORES.get(plataforma)
         if conector is None:
-            estado.append({"empresa": empresa["nombre"], "estado": "sin conector", "plataforma": plataforma})
+            # "manual": la plataforma no deja leerla automáticamente; la web enseña el enlace.
+            estado.append({
+                "empresa": empresa["nombre"],
+                "estado": "a mano" if plataforma == "manual" else "sin conector",
+                "plataforma": plataforma,
+                "web": empresa.get("web", ""),
+                "sector": empresa.get("sector", ""),
+            })
             continue
 
         try:

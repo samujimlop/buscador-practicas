@@ -68,3 +68,14 @@ def test_ejecutar_conserva_fecha_de_primera_vez_y_aguanta_fallos(monkeypatch):
     dia2 = ejecutar(empresas, dia1, hoy="2026-11-19")
     nueva = next(o for o in dia2["ofertas"] if o["empresa"] == "X")
     assert nueva["primera_vez_vista"] == "2026-11-18"  # no se resetea al volver a verla
+
+
+def test_no_confunde_technician_con_informatica():
+    assert not es_informatica(oferta("Electronics Maintenance Technician Trainee"))
+    assert es_informatica(oferta("Beca Talentum - AI engineer - AI Native SOC"))
+    assert es_informatica(oferta("Prácticas en Tecnología & Transformación"))
+
+
+def test_primera_ciudad_mencionada():
+    assert normalizar_ciudad("Madrid, Barcelona") == "Madrid"
+    assert normalizar_ciudad("LOGROÑO") == "Logroño"

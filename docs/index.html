@@ -36,6 +36,14 @@
   .chip { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
   .chip.nueva { background: var(--new-soft); color: var(--new); font-weight: 600; }
   .vacio { text-align: center; color: var(--muted); padding: 40px 16px; border: 1px dashed var(--border); border-radius: 10px; }
+  #manuales { margin-top: 36px; }
+  #manuales h2 { font-size: 18px; margin: 0 0 4px; }
+  .nota { color: var(--muted); margin: 0 0 12px; }
+  .enlaces { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
+  .enlaces a { display: block; background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+               padding: 10px 12px; color: var(--text); text-decoration: none; }
+  .enlaces a:hover { border-color: var(--accent); color: var(--accent); }
+  .enlaces small { display: block; color: var(--muted); }
   details { margin-top: 32px; color: var(--muted); }
   details table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 14px; }
   details td, details th { text-align: left; padding: 4px 6px; border-bottom: 1px solid var(--border); }
@@ -61,6 +69,12 @@
   </div>
 
   <div class="lista" id="lista"></div>
+
+  <section id="manuales" hidden>
+    <h2>Revisa también a mano</h2>
+    <p class="nota">Estas empresas no dejan leer sus ofertas de forma automática. Te dejamos el enlace a su buscador, ya filtrado cuando se puede.</p>
+    <div class="enlaces" id="enlaces"></div>
+  </section>
 
   <details>
     <summary>Estado de cada empresa en la última actualización</summary>
@@ -123,7 +137,13 @@ async function iniciar() {
     const datos = await (await fetch("ofertas.json", { cache: "no-store" })).json();
     ofertas = datos.ofertas || [];
     const fecha = datos.actualizado ? new Date(datos.actualizado).toLocaleString("es-ES") : "nunca";
-    const conConector = (datos.estado || []).filter((e) => e.estado !== "sin conector").length;
+    const conConector = (datos.estado || []).filter((e) => e.estado === "ok" || e.estado === "error").length;
+    const manuales = (datos.estado || []).filter((e) => e.estado === "a mano" && e.web);
+    if (manuales.length) {
+      $("manuales").hidden = false;
+      $("enlaces").innerHTML = manuales.map((e) =>
+        `<a href="${escapar(e.web)}" target="_blank" rel="noopener">${escapar(e.empresa)}<small>${escapar(e.sector || "")}</small></a>`).join("");
+    }
     $("resumen").textContent =
       `Prácticas de informática en portales de empresas de toda España. Empresas revisadas: ${conConector}. Actualizado: ${fecha}.`;
     rellenarSelect($("ciudad"), ofertas.map((o) => o.ciudad));

@@ -1,0 +1,25 @@
+# Botón para probar los conectores contra las webs reales SIN guardar nada.
+# Actions → "Probar conectores" → Run workflow (puedes poner empresas concretas).
+name: Probar conectores
+on:
+  workflow_dispatch:
+    inputs:
+      empresas:
+        description: 'Nombres separados por comas (vacío = todas)'
+        required: false
+        default: ''
+jobs:
+  probar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12", cache: pip }
+      - run: pip install -r requirements.txt
+      - name: Probar
+        env:
+          EMPRESAS: ${{ inputs.empresas }}
+        run: |
+          IFS=',' read -ra LISTA <<< "$EMPRESAS"
+          python -m herramientas.probar_conectores "${LISTA[@]}"

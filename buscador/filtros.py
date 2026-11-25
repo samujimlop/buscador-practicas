@@ -64,7 +64,8 @@ def es_practica(oferta: Oferta) -> bool:
 
 PALABRAS_INFORMATICA = [
     "software", "developer*", "desarroll*", "programad*", "programming",
-    "engineer*", "ingenier*", "informatic*", "computer", "it", "tech*",
+    "engineer*", "ingenier*", "informatic*", "computer", "it", "tech", "technology",
+    "tecnolog*", "ciberseguridad", "ai engineer", "software engineer",
     "data", "datos", "machine learning", "ia", "ai", "inteligencia artificial",
     "cloud", "devops", "backend", "back-end", "frontend", "front-end",
     "full stack", "fullstack", "ciberseguridad", "cybersecurity", "security",
@@ -101,20 +102,37 @@ CIUDADES = {
     "tenerife": "Santa Cruz de Tenerife", "albacete": "Albacete", "huelva": "Huelva",
     "cadiz": "Cádiz", "algeciras": "Cádiz", "leon": "León", "burgos": "Burgos",
     "tarragona": "Tarragona", "girona": "Girona", "castellon": "Castellón",
+    "logrono": "Logroño", "sabadell": "Barcelona", "terrassa": "Barcelona",
+    "badalona": "Barcelona", "cornella": "Barcelona", "el prat": "Barcelona",
+    "leganes": "Madrid", "alcala de henares": "Madrid", "torrejon": "Madrid",
+    "mostoles": "Madrid", "alcorcon": "Madrid", "fuenlabrada": "Madrid",
+    "boecillo": "Valladolid", "aviles": "Asturias", "asturias": "Asturias",
+    "toledo": "Toledo", "ciudad real": "Ciudad Real", "cuenca": "Cuenca",
+    "guadalajara": "Guadalajara", "jaen": "Jaén", "almeria": "Almería",
+    "badajoz": "Badajoz", "caceres": "Cáceres", "lugo": "Lugo", "ourense": "Ourense",
+    "pontevedra": "Pontevedra", "lleida": "Lleida", "huesca": "Huesca", "teruel": "Teruel",
+    "soria": "Soria", "segovia": "Segovia", "avila": "Ávila", "zamora": "Zamora",
+    "palencia": "Palencia", "elche": "Alicante", "cartagena": "Murcia",
 }
 
 PALABRAS_ESPANA = ["spain", "espana", "espanya"]
 
 
 def normalizar_ciudad(ubicacion: str) -> str:
-    """'Madrid, Community of Madrid, Spain' -> 'Madrid'. Si no la conoce, ''."""
+    """'Madrid, Community of Madrid, Spain' -> 'Madrid'. Si no la conoce, ''.
+
+    Si aparecen varias ciudades ("Madrid, Barcelona"), gana la PRIMERA que se
+    menciona. Si dos claves empiezan en el mismo sitio, gana la más larga:
+    "san sebastian de los reyes" (Madrid) antes que "san sebastian" (Gipuzkoa).
+    """
     texto = _sin_acentos(ubicacion)
-    # Buscamos primero las claves más largas: "san sebastian de los reyes"
-    # (Madrid) antes que "san sebastian" (Gipuzkoa).
-    for clave in sorted(CIUDADES, key=len, reverse=True):
-        if re.search(rf"\b{re.escape(clave)}\b", texto):
-            return CIUDADES[clave]
-    return ""
+    mejor = None  # (posición, -longitud, ciudad)
+    for clave, ciudad in CIUDADES.items():
+        m = re.search(rf"\b{re.escape(clave)}\b", texto)
+        if m:
+            candidato = (m.start(), -len(clave), ciudad)
+            mejor = min(mejor, candidato) if mejor else candidato
+    return mejor[2] if mejor else ""
 
 
 def es_en_espana(oferta: Oferta) -> bool:
