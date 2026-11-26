@@ -1,6 +1,22 @@
 {
- "actualizado": "2026-11-25T17:55+00:00",
+ "actualizado": "2026-11-26T17:14+00:00",
  "ofertas": [
+  {
+   "empresa": "EY",
+   "titulo": "Prácticas Technology Consulting  - Enero 2027 Bilbao",
+   "url": "https://careers.ey.com/ey/job/Bilbao-Pr%C3%A1cticas-Technology-Consulting-Enero-2027-Bilbao-48009/1446068833/?feedId=null&utm_source=J2WRSS&utm_medium=rss&utm_campaign=J2W_RSS",
+   "ciudad": "Bilbao",
+   "ubicacion_original": "Bilbao, ES, 48009",
+   "pais": "Spain",
+   "sector": "Consultoría",
+   "departamento": "",
+   "modalidad": "",
+   "fecha_publicacion": "2026-10-09",
+   "descripcion": "En EY, damos forma al futuro con confianza. En EY encontrarás mucho más que un empleo : una oportunidad real para crecer, aprender y dejar huella en una firma global líder. En España somos cerca de 7.000 profesionales , presentes en 15 oficinas , y formamos parte de una red global de más de 400.000 personas que trabajan cada día con un propósito común: Building a Better Working World . En EY impulsamos carreras con impacto, desarrollo estructurado y aprendizaje continuo. Damos forma al futuro con confianza, a través de las personas y la tecnología. #ShapeTheFutureWithConfidence #EYCareers #BuildingABetterWorkingWorld La oportunidad EY es una firma global líder en auditoría, consultoría, estrategia y transacciones, y servicios legales y fiscales, que acompaña a organizaciones públicas y privadas en sus retos más complejos. En EY: Apostamos por la innovación continua Desarrollamos talento a largo plazo dentro de equipos multidisciplinares Impulsamos carreras con propósito y recorrido Descripción del puesto Desde EY Consulting nos hemos adaptado a la naturaleza de los sectores, a las nuevas necesidades que tienen nuestros clientes y los acompañamos en su transformación digital. Somos innovadores, ágiles, colaborativos y alineamos objetivos de estrategia de negocio con las nuevas tecnologías. Uno de nuestros pilares es transformar el negocio a través de nuevas tecnologías e innovación atrayendo y cautivando el talento excepcional. EY Consulting nos dividimos en dos grandes áreas: Business Consulting y Technology Consulting. Desde Business Consulting realizamos proyectos de estrategia de negocio, optimización de procesos y gestión del cambio. En Technology Consulting desarrollamos soluciones vinculadas a las áreas de Big Data & Analytics, Cyberseguridad, SAP, Automatización de procesos de negocio (RPA, NLP…), entorno Cloud, Microsoft, etc. Apostamos por jóvenes sin experiencia, con pasión por el mundo de la Consultoría, que quieran desarrollar su carrera profesional con nosotros. Como parte del equipo, disfrutarás de un entorno creativo, desafiante y colaborativo donde tanto tus ideas como tu talento, tus ganas, tu motivación serán muy valoradas. Requisitos Estar cursando Grado o Máster en: Ingenierías (Informática, Telecomunicaciones, Industrial etc.). Dobles titulaciones ADE + Ingeniería, ADE + Business Analytics, y similares. Grado en Matemáticas, Estadística, Física. Posibilidad de poder gestionar convenio de prácticas con tu universidad. Período mínimo: 6 meses. Interés por desarrollar tu carrera en el área de Technology Consulting. Buenas habilidades de comunicación, trabajo en equipo y ganas de aprender. Nivel de inglés mínimo B2 Período: 6 meses. Jornada completa/media jornada Incorporación: enero 2027 Oficina: Bilbao Qué ofrecemos · Formación práctica en una firma global líder en servicios profesionales. · Acompañamiento y mentoring por parte de profesionales del área de Technology Consulting. · Ambiente joven, colaborativo e inclusivo. · Posibilidad de desarrollo profesional y continuidad dentro de EY tras la beca. · Acceso a iniciativas de impacto social, voluntariado, deporte y bienestar. · Beneficios y descuentos exclusivos por formar parte de EY.",
+   "primera_vez_vista": "2026-11-26",
+   "etiquetas": [],
+   "id": "183b47e589d5"
+  },
   {
    "empresa": "KPMG",
    "titulo": "Rocket Program Madrid - Prácticas People Analytics - Noviembre 2026",
@@ -246,7 +262,7 @@
   {
    "empresa": "Telefónica",
    "estado": "ok",
-   "total": 41,
+   "total": 38,
    "practicas_it": 4
   },
   {
@@ -264,7 +280,7 @@
   {
    "empresa": "Deloitte",
    "estado": "ok",
-   "total": 56,
+   "total": 59,
    "practicas_it": 3
   },
   {
@@ -276,8 +292,8 @@
   {
    "empresa": "EY",
    "estado": "ok",
-   "total": 88,
-   "practicas_it": 0
+   "total": 90,
+   "practicas_it": 1
   },
   {
    "empresa": "Amadeus",
@@ -387,7 +403,7 @@
   {
    "empresa": "Cabify",
    "estado": "ok",
-   "total": 44,
+   "total": 42,
    "practicas_it": 0
   },
   {
